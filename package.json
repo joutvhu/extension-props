@@ -1,35 +1,39 @@
 {
-  "name": "extension-props",
-  "version": "1.0.0",
-  "description": "",
-  "main": "lib/index.js",
-  "directories": {
-    "lib": "lib"
-  },
-  "files": [
-    "lib",
-    "README.md",
-    "LICENSE"
-  ],
-  "scripts": {
-    "lint": "eslint --config ./config/.eslintrc ./lib/",
-    "test": "jest --verbose --config=config/jest.config.js"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/joutvhu/extension-props.git"
-  },
-  "keywords": [
-    "extension-props"
-  ],
-  "author": "Jout V Hu (Giao Ho)",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/joutvhu/extension-props/issues"
-  },
-  "homepage": "https://github.com/joutvhu/extension-props#readme",
-  "devDependencies": {
-    "eslint": "^5.16.0",
-    "jest": "^24.7.0"
-  }
+    "name": "extension-props",
+    "version": "1.0.0",
+    "description": "",
+    "main": "lib/index.js",
+    "directories": {
+        "lib": "lib"
+    },
+    "files": [
+        "lib",
+        "README.md",
+        "LICENSE"
+    ],
+    "scripts": {
+        "build": "tsc --project ./config/tsconfig.json",
+        "lint:ts": "tslint -c ./config/tslint.json --project ./config/tsconfig.json",
+        "lint:js": "eslint --config ./config/.eslintrc ./lib/",
+        "test": "jest --verbose --config=config/jest.config.js"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/joutvhu/extension-props.git"
+    },
+    "keywords": [
+        "extension-props"
+    ],
+    "author": "Jout V Hu (Giao Ho)",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/joutvhu/extension-props/issues"
+    },
+    "homepage": "https://github.com/joutvhu/extension-props#readme",
+    "devDependencies": {
+        "eslint": "^5.16.0",
+        "jest": "^24.7.0",
+        "tslint": "^5.15.0",
+        "typescript": "^3.4.3"
+    }
 }
