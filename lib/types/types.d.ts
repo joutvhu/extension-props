@@ -45,6 +45,11 @@ interface FunctionConstructor {
     defineClass(name: string, superClass?: any, prototype?: Function);
     defineFunction(name: string, _prototype?: Function): Function | undefined;
     getAllPropertyNames(obj: any): string[];
+    isNormalFunction(f: Function): boolean;
+    isAsyncFunction(f: Function): boolean;
+    isSyncFunction(f: Function): boolean;
+    isArrowFunction(f: Function): boolean;
+    isNonArrowFunction(f: Function): boolean;
 }
 
 interface Object {
