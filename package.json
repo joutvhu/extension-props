@@ -1,6 +1,6 @@
 {
     "name": "extension-props",
-    "version": "1.0.0",
+    "version": "0.9.0",
     "description": "",
     "main": "lib/index.js",
     "directories": {
@@ -11,6 +11,9 @@
         "README.md",
         "LICENSE"
     ],
+    "publishConfig": {
+        "access": "public"
+    },
     "scripts": {
         "build": "tsc --project ./config/tsconfig.json",
         "lint:ts": "tslint -c ./config/tslint.json --project ./config/tsconfig.json",
