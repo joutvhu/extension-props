@@ -3,6 +3,8 @@
     "version": "0.9.1",
     "description": "",
     "main": "lib/index.js",
+    "types": "./lib/index.d.ts",
+    "typescript:main": "./lib/index.ts",
     "directories": {
         "lib": "lib"
     },
@@ -25,7 +27,9 @@
         "url": "https://github.com/joutvhu/extension-props.git"
     },
     "keywords": [
-        "extension-props"
+        "extension-props",
+        "extension properties",
+        "utilities"
     ],
     "author": "Jout V Hu (Giao Ho)",
     "license": "MIT",
