@@ -38,6 +38,7 @@ interface Function {
     clone(): Function | undefined;
     defineClass(name: string, superClass?: any);
     defineFunction(name: string): Function | undefined;
+    subclassOf(superClass: any): boolean;
 }
 
 interface FunctionConstructor {
