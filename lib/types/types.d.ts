@@ -14,6 +14,7 @@ interface StringConstructor {
 }
 
 interface Array<T> {
+    includes(searchElement: T, fromIndex?: number): boolean;
     equals(v: T[]): boolean;
     virtualGet(i: number): T;
     insert(index: number, ...element: T[]): T[];
@@ -59,6 +60,8 @@ interface Object {
 }
 
 interface ObjectConstructor {
+    isBlank(v: any): boolean;
+    isNotBlank(v: any): boolean;
     getAllPropertyNames(obj: any): string[];
     preventOverrideClass(obj: any, classDefinition: any, except?: any[]): boolean;
     preventOverrideFunction(obj: any, classDefinition: any, functions: string[]): boolean;
