@@ -1,6 +1,7 @@
 function getAllPropertyNames(obj: Object): string[] {
     let result: string[] = [];
     let temp: string[];
+    let i;
 
     if (obj) {
         if (obj.constructor === {}.constructor)
@@ -8,7 +9,7 @@ function getAllPropertyNames(obj: Object): string[] {
         try {
             while (obj.constructor !== Object) {
                 temp = Object.getOwnPropertyNames(obj);
-                for (let i of temp) {
+                for (i of temp) {
                     if (!result.includes(i))
                         result.push(i);
                 }
@@ -22,10 +23,57 @@ function getAllPropertyNames(obj: Object): string[] {
     return result;
 }
 
+function getAllPropertyDescriptors(obj: Object): any {
+    let result: any = {};
+    let names: string[];
+    let i, temp;
+
+    if (obj) {
+        if (obj.constructor === {}.constructor) {
+            names = Object.getOwnPropertyNames(obj);
+            for(i of names) {
+                temp = Object.getOwnPropertyDescriptor(obj, i);
+                if(temp !== undefined) result[i] = temp;
+            }
+        } else {
+            try {
+                while (obj.constructor !== Object) {
+                    names = Object.getOwnPropertyNames(obj);
+                    for (i of names) {
+                        if (result[i] === undefined ||
+                            (i === 'constructor' && result[i].constructor !== {}.constructor)) {
+                            temp = Object.getOwnPropertyDescriptor(obj, i);
+                            if(temp !== undefined) result[i] = temp;
+                        }
+                    }
+
+                    obj = Object.getPrototypeOf(obj);
+                }
+            } catch (e) {
+                // continue regardless of error
+            }
+        }
+    }
+    return result;
+}
+
+function isBlank(v: any): boolean {
+    return v === undefined || v === null;
+}
+
+function isNotBlank(v: any): boolean {
+    return v !== undefined && v !== null;
+}
+
 export const type = {
-    getAllPropertyNames
+    getAllPropertyNames,
+    getAllPropertyDescriptors,
+    isBlank,
+    isNotBlank
 };
 
 export function extend() {
     Object.getAllPropertyNames = getAllPropertyNames;
+    Object.isBlank = isBlank;
+    Object.isNotBlank = isNotBlank;
 }
