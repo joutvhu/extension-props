@@ -63,6 +63,8 @@ interface ObjectConstructor {
     isBlank(v: any): boolean;
     isNotBlank(v: any): boolean;
     getAllPropertyNames(obj: any): string[];
+    getAllPropertyDescriptor(obj: any, p: string): any;
+    getAllPropertyDescriptors(obj: any): any;
     preventOverrideClass(obj: any, classDefinition: any, except?: any[]): boolean;
     preventOverrideFunction(obj: any, classDefinition: any, functions: string[]): boolean;
 }
