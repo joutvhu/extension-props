@@ -1,4 +1,4 @@
-function getAllPropertyNames(obj: Object): string[] {
+function getAllPropertyNames(obj: any): string[] {
     let result: string[] = [];
     let temp: string[];
     let i;
@@ -23,7 +23,41 @@ function getAllPropertyNames(obj: Object): string[] {
     return result;
 }
 
-function getAllPropertyDescriptors(obj: Object): any {
+function getAllPropertyDescriptor(obj: any, p: string): any {
+    let names: any[];
+    let i, temp;
+
+    if (obj) {
+        if (obj.constructor === {}.constructor) {
+            names = Object.getOwnPropertyNames(obj);
+            for(i of names) {
+                if(i == p) {
+                    temp = Object.getOwnPropertyDescriptor(obj, i);
+                    if (temp !== undefined) return temp;
+                }
+            }
+        } else {
+            try {
+                while (obj.constructor !== Object) {
+                    names = Object.getOwnPropertyNames(obj);
+                    for (i of names) {
+                        if (i == p) {
+                            temp = Object.getOwnPropertyDescriptor(obj, i);
+                            if (temp !== undefined) return temp;
+                        }
+                    }
+
+                    obj = Object.getPrototypeOf(obj);
+                }
+            } catch (e) {
+                // continue regardless of error
+            }
+        }
+    }
+    return undefined;
+}
+
+function getAllPropertyDescriptors(obj: any): any {
     let result: any = {};
     let names: string[];
     let i, temp;
@@ -67,6 +101,7 @@ function isNotBlank(v: any): boolean {
 
 export const type = {
     getAllPropertyNames,
+    getAllPropertyDescriptor,
     getAllPropertyDescriptors,
     isBlank,
     isNotBlank
@@ -74,6 +109,8 @@ export const type = {
 
 export function extend() {
     Object.getAllPropertyNames = getAllPropertyNames;
+    Object.getAllPropertyDescriptor = getAllPropertyDescriptor;
+    Object.getAllPropertyDescriptors = getAllPropertyDescriptors;
     Object.isBlank = isBlank;
     Object.isNotBlank = isNotBlank;
 }
