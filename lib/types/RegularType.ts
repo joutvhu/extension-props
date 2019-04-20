@@ -19,7 +19,7 @@ function escape(str: string): string {
  */
 function matchWords(str: string): string {
     if (typeof str !== 'string' || str.length === 0) return '';
-    let s = str.trim().replace(/ +/g, ' ');
+    const s = str.trim().replace(/ +/g, ' ');
     if (s.length === 0) return '';
     return '(' + s.replace(/[-/\\^$*+?.()|[\]{}]/g, '\\$&')
         .replace(/ /g, ')|(') + ')';
@@ -41,4 +41,4 @@ export function extend() {
     RegExp.escape = escape;
     RegExp.matchWords = matchWords;
     RegExp.forInstance = forInstance;
-};
+}

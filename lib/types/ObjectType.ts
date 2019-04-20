@@ -1,5 +1,5 @@
 function getAllPropertyNames(obj: any): string[] {
-    let result: string[] = [];
+    const result: string[] = [];
     let temp: string[];
     let i;
 
@@ -25,7 +25,8 @@ function getAllPropertyNames(obj: any): string[] {
 
 function getAllPropertyDescriptor(obj: any, p: string): any {
     let names: any[];
-    let i, temp;
+    let i;
+    let temp;
 
     if (obj) {
         if (obj.constructor === {}.constructor) {
@@ -58,9 +59,10 @@ function getAllPropertyDescriptor(obj: any, p: string): any {
 }
 
 function getAllPropertyDescriptors(obj: any): any {
-    let result: any = {};
+    const result: any = {};
     let names: string[];
-    let i, temp;
+    let i;
+    let temp;
 
     if (obj) {
         if (obj.constructor === {}.constructor) {

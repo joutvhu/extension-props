@@ -77,10 +77,13 @@ function isClass(v: any): boolean {
 }
 
 function preventOverrideClass(obj: any, classDefinition: any, except?: any[]): boolean {
-    if (forInstance(obj) && obj['__proto__'] instanceof classDefinition) {
+    if (forInstance(classDefinition) && obj instanceof Object && obj['__proto__'] instanceof classDefinition) {
+        let i;
         let error = true;
         if (except) {
-            for (let i of except) {
+            for (i of except) {
+                if(!forInstance(i))
+                    return false;
                 if (obj instanceof i) {
                     error = false;
                     break;
@@ -103,10 +106,11 @@ function dynamicPreventOverrideClass(classDefinition: any, except?: any[]): bool
 function preventOverrideFunction(obj: any, classDefinition: any, functions: string[]): boolean {
     if (forInstance(obj) && obj instanceof classDefinition &&
         obj['__proto__'] !== undefined && obj['__proto__'] !== null) {
+        let i;
         let nObj = this;
 
         while (nObj instanceof classDefinition) {
-            for (let i of functions) {
+            for (i of functions) {
                 if (typeof i === 'string' && nObj.hasOwnProperty(i))
                     throw new OverridingError('You can\'t override the [FunctionName] in any subclasses of the [ClassName] class.'
                         .replace('[FunctionName]', i)
@@ -125,6 +129,13 @@ function dynamicPreventOverrideFunction(classDefinition: any, functions: string[
 
 function subclassOf(superClass: any): boolean {
     return this instanceof Function && this.prototype instanceof superClass;
+}
+
+function isES6Class(c: any): boolean {
+    if (forInstance(c)) {
+        const cstr = c.toString();
+        return /^\s*class\b/.test(cstr);
+    } else return false;
 }
 
 interface FunctionType {
@@ -153,6 +164,7 @@ export const type = {
     forInstance,
     isClass,
     defineClass,
+    isES6Class,
     preventOverrideClass,
     preventOverrideFunction,
     valueOf
@@ -162,6 +174,7 @@ export function extend() {
     Function.defineClass = defineClass;
     Function.isClass = isClass;
     Function.subclassOf = subclassOf;
+    Function.isES6Class = isES6Class;
 
     Object.preventOverrideClass = preventOverrideClass;
     Object.preventOverrideFunction = preventOverrideFunction;
