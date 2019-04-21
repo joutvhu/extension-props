@@ -45,6 +45,7 @@ interface Function {
 interface FunctionConstructor {
     isClass(v: any): boolean;
     defineClass(name: string, superClass?: any, prototype?: Function);
+    isES6Class(v: any): boolean;
     defineFunction(name: string, _prototype?: Function): Function | undefined;
     getAllPropertyNames(obj: any): string[];
     isNormalFunction(f: Function): boolean;

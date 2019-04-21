@@ -1,116 +1,23 @@
-function getAllPropertyNames(obj: any): string[] {
-    let result: string[] = [];
-    let temp: string[];
-    let i;
-
-    if (obj) {
-        if (obj.constructor === {}.constructor)
-            return Object.getOwnPropertyNames(obj);
-        try {
-            while (obj.constructor !== Object) {
-                temp = Object.getOwnPropertyNames(obj);
-                for (i of temp) {
-                    if (!result.includes(i))
-                        result.push(i);
-                }
-
-                obj = Object.getPrototypeOf(obj);
-            }
-        } catch (e) {
-            // continue regardless of error
-        }
-    }
-    return result;
-}
-
-function getAllPropertyDescriptor(obj: any, p: string): any {
-    let names: any[];
-    let i, temp;
-
-    if (obj) {
-        if (obj.constructor === {}.constructor) {
-            names = Object.getOwnPropertyNames(obj);
-            for(i of names) {
-                if(i == p) {
-                    temp = Object.getOwnPropertyDescriptor(obj, i);
-                    if (temp !== undefined) return temp;
-                }
-            }
-        } else {
-            try {
-                while (obj.constructor !== Object) {
-                    names = Object.getOwnPropertyNames(obj);
-                    for (i of names) {
-                        if (i == p) {
-                            temp = Object.getOwnPropertyDescriptor(obj, i);
-                            if (temp !== undefined) return temp;
-                        }
-                    }
-
-                    obj = Object.getPrototypeOf(obj);
-                }
-            } catch (e) {
-                // continue regardless of error
-            }
-        }
-    }
-    return undefined;
-}
-
-function getAllPropertyDescriptors(obj: any): any {
-    let result: any = {};
-    let names: string[];
-    let i, temp;
-
-    if (obj) {
-        if (obj.constructor === {}.constructor) {
-            names = Object.getOwnPropertyNames(obj);
-            for(i of names) {
-                temp = Object.getOwnPropertyDescriptor(obj, i);
-                if(temp !== undefined) result[i] = temp;
-            }
-        } else {
-            try {
-                while (obj.constructor !== Object) {
-                    names = Object.getOwnPropertyNames(obj);
-                    for (i of names) {
-                        if (result[i] === undefined ||
-                            (i === 'constructor' && result[i].constructor !== {}.constructor)) {
-                            temp = Object.getOwnPropertyDescriptor(obj, i);
-                            if(temp !== undefined) result[i] = temp;
-                        }
-                    }
-
-                    obj = Object.getPrototypeOf(obj);
-                }
-            } catch (e) {
-                // continue regardless of error
-            }
-        }
-    }
-    return result;
-}
-
-function isBlank(v: any): boolean {
-    return v === undefined || v === null;
-}
-
-function isNotBlank(v: any): boolean {
-    return v !== undefined && v !== null;
-}
-
-export const type = {
-    getAllPropertyNames,
+import {
     getAllPropertyDescriptor,
     getAllPropertyDescriptors,
+    getAllPropertyNames,
+    isBlank,
+    isNotBlank
+} from '../utils/Object';
+
+export const type = {
+    getAllPropertyDescriptor,
+    getAllPropertyDescriptors,
+    getAllPropertyNames,
     isBlank,
     isNotBlank
 };
 
 export function extend() {
-    Object.getAllPropertyNames = getAllPropertyNames;
     Object.getAllPropertyDescriptor = getAllPropertyDescriptor;
     Object.getAllPropertyDescriptors = getAllPropertyDescriptors;
+    Object.getAllPropertyNames = getAllPropertyNames;
     Object.isBlank = isBlank;
     Object.isNotBlank = isNotBlank;
 }

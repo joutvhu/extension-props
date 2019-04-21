@@ -1,10 +1,4 @@
-declare function forInstance(v: any): boolean;
-declare function defineFunction(name: string, _prototype?: Function): Function | undefined;
-declare function isNormalFunction(f: Function): boolean;
-declare function isAsyncFunction(f: Function): boolean;
-declare function isSyncFunction(f: Function): boolean;
-declare function isArrowFunction(f: Function): boolean;
-declare function isNonArrowFunction(f: Function): boolean;
+import { defineFunction, functionForInstance, isArrowFunction, isAsyncFunction, isNonArrowFunction, isNormalFunction, isSyncFunction } from '../utils/ClassAndFunction';
 interface FunctionType {
     clone(): Function;
     defineClass(name: string, superClass?: any): any;
@@ -12,7 +6,7 @@ interface FunctionType {
 }
 declare function valueOf(v: any): FunctionType | undefined;
 export declare const type: {
-    forInstance: typeof forInstance;
+    forInstance: typeof functionForInstance;
     defineFunction: typeof defineFunction;
     isNormalFunction: typeof isNormalFunction;
     isAsyncFunction: typeof isAsyncFunction;
