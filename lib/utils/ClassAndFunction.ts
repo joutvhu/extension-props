@@ -86,9 +86,9 @@ export function preventOverrideClass(obj: any, classDefinition: any, except?: an
     if (classForInstance(classDefinition) && obj instanceof Object && obj['__proto__'] instanceof classDefinition) {
         let i;
         let error = true;
-        if (except) {
+        if (except instanceof Array && except.length > 0) {
             for (i of except) {
-                if(!classForInstance(i))
+                if (!classForInstance(i))
                     return false;
                 if (obj instanceof i) {
                     error = false;
@@ -110,20 +110,22 @@ export function dynamicPreventOverrideClass(classDefinition: any, except?: any[]
 }
 
 export function preventOverrideFunction(obj: any, classDefinition: any, functions: string[]): boolean {
-    if (classForInstance(obj) && obj instanceof classDefinition &&
-        obj['__proto__'] !== undefined && obj['__proto__'] !== null) {
-        let i;
-        let nObj = this;
+    if (classForInstance(classDefinition) && obj instanceof Object && obj['__proto__'] instanceof classDefinition) {
+        if (functions instanceof Array && functions.length > 0) {
+            let i;
+            let nObj = obj;
 
-        while (nObj instanceof classDefinition) {
-            for (i of functions) {
-                if (typeof i === 'string' && nObj.hasOwnProperty(i))
-                    throw new OverridingError('You can\'t override the [FunctionName] in any subclasses of the [ClassName] class.'
-                        .replace('[FunctionName]', i)
-                        .replace('[ClassName]', classDefinition['name']));
+            while (nObj instanceof classDefinition) {
+                for (i of functions) {
+                    if (nObj.hasOwnProperty(i)) {
+                        throw new OverridingError('You can\'t override the [FunctionName] in any subclasses of the [ClassName] class.'
+                            .replace('[FunctionName]', i)
+                            .replace('[ClassName]', classDefinition['name']));
+                    }
+                }
+
+                nObj = nObj['__proto__'];
             }
-
-            nObj = nObj['__proto__'];
         }
         return true;
     } else return false;
