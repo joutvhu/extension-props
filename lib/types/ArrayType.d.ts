@@ -1,11 +1,4 @@
-/**
- * Check value is instance of Array
- * @param v the value
- * @returns {boolean}
- */
-declare function forInstance(v: any): boolean;
-declare function isBlank(v: any): boolean;
-declare function isNotBlank(v: any): boolean;
+import { forInstance, isBlank, isNotBlank } from '../utils/Array';
 interface ArrayType<T> {
     equals(v: T[]): boolean;
     virtualGet(i: number): T;

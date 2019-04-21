@@ -1,19 +1,7 @@
-declare function forInstance(v: any): boolean;
-/**
- *
- * @param str
- * @returns {string|void | string | never} a string of Regular
- */
-declare function escape(str: string): string;
-/**
- *
- * @param str
- * @returns {string} a string of Regular
- */
-declare function matchWords(str: string): string;
+import { escape, matchWords, regularForInstance } from '../utils/StringAndRegular';
 declare function valueOf(v: RegExp): {} | null;
 export declare const type: {
-    forInstance: typeof forInstance;
+    forInstance: typeof regularForInstance;
     escape: typeof escape;
     matchWords: typeof matchWords;
     valueOf: typeof valueOf;

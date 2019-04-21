@@ -1,16 +1,4 @@
-declare function forInstance(v: any): boolean;
-/**
- * Check string is blank
- *
- * @returns {boolean}
- */
-declare function isBlank(v: any): boolean;
-/**
- * Check string is not blank
- *
- * @returns {boolean}
- */
-declare function isNotBlank(v: any): boolean;
+import { isBlank, isNotBlank, stringForInstance } from '../utils/StringAndRegular';
 interface StringType {
     equals(v: any): boolean;
     equalsIgnoreCase(v: any): boolean;
@@ -21,7 +9,7 @@ declare function valueOf(v: string): StringType | undefined;
 export declare const type: {
     empty: string;
     space: string;
-    forInstance: typeof forInstance;
+    forInstance: typeof stringForInstance;
     isBlank: typeof isBlank;
     isNotBlank: typeof isNotBlank;
     valueOf: typeof valueOf;
