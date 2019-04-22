@@ -6,17 +6,17 @@ export function classForInstance(v: any): boolean {
     return v instanceof Function && v.prototype instanceof Object;
 }
 
-export function inheritsLoose(subClass, superClass): void {
-    subClass.prototype = Object.create(superClass.prototype);
-    subClass.prototype.constructor = subClass;
-    subClass.__proto__ = superClass;
+export function inheritsLoose(subclass, superclass): void {
+    subclass.prototype = Object.create(superclass.prototype);
+    subclass.prototype.constructor = subclass;
+    subclass.__proto__ = superclass;
 }
 
-export function defineFunctionClass(name: string, _superClass, _prototype?: Function): Function {
+export function defineFunctionClass(name: string, _superclass, _prototype?: Function): Function {
     let temp;
     let statements = 'temp = function ' + name + '() {\n';
-    if (_superClass)
-        statements += '    var _this = _superClass.apply(this, arguments) || this;\n';
+    if (_superclass)
+        statements += '    var _this = _superclass.apply(this, arguments) || this;\n';
     else
         statements += '    var _this = this;\n';
     if (_prototype instanceof Function) {
@@ -32,18 +32,18 @@ export function defineFunctionClass(name: string, _superClass, _prototype?: Func
     return temp;
 }
 
-export function defineES5Class(name: string, superClass, prototype?: Function): Function {
-    const subClass = defineFunctionClass(name, superClass, prototype);
-    if (superClass && superClass.prototype instanceof Object)
-        inheritsLoose(subClass, superClass);
+export function defineES5Class(name: string, superclass, prototype?: Function): Function {
+    const subClass = defineFunctionClass(name, superclass, prototype);
+    if (superclass && superclass.prototype instanceof Object)
+        inheritsLoose(subClass, superclass);
     return subClass;
 }
 
-export function defineES6Class(name: string, _superClass, _prototype?: Function) {
+export function defineES6Class(name: string, _superclass, _prototype?: Function) {
     let temp;
     let statements = 'temp = class ' + name;
-    if (_superClass && _superClass.prototype instanceof Object)
-        statements += ' extends _superClass';
+    if (_superclass && _superclass.prototype instanceof Object)
+        statements += ' extends _superclass';
     statements += ' {\n' +
         '    constructor() {\n' +
         '        super(...arguments);\n';
@@ -82,7 +82,7 @@ export function isClass(v: any): boolean {
     } else return false;
 }
 
-export function preventOverrideClass(obj: any, classDefinition: any, except?: any[]): boolean {
+export function preventInheritingClass(obj: any, classDefinition: any, except?: any[]): boolean {
     if (classForInstance(classDefinition) && obj instanceof Object && obj['__proto__'] instanceof classDefinition) {
         let i;
         let error = true;
@@ -105,8 +105,8 @@ export function preventOverrideClass(obj: any, classDefinition: any, except?: an
     return false;
 }
 
-export function dynamicPreventOverrideClass(classDefinition: any, except?: any[]): boolean {
-    return preventOverrideClass(this, classDefinition, except);
+export function dynamicPreventInheritingClass(classDefinition: any, except?: any[]): boolean {
+    return preventInheritingClass(this, classDefinition, except);
 }
 
 export function preventOverrideFunction(obj: any, classDefinition: any, functions: string[]): boolean {
@@ -135,8 +135,8 @@ export function dynamicPreventOverrideFunction(classDefinition: any, functions: 
     return preventOverrideFunction(this, classDefinition, functions);
 }
 
-export function subclassOf(superClass: any): boolean {
-    return this instanceof Function && this.prototype instanceof superClass;
+export function subclassOf(superclass: any): boolean {
+    return this instanceof Function && this.prototype instanceof superclass;
 }
 
 export function isES6Class(c: any): boolean {

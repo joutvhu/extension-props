@@ -1,9 +1,9 @@
-import { classForInstance, defineClass, isClass, isES6Class, preventOverrideClass, preventOverrideFunction } from '../utils/ClassAndFunction';
+import { classForInstance, defineClass, isClass, isES6Class, preventInheritingClass, preventOverrideFunction } from '../utils/ClassAndFunction';
 interface FunctionType {
-    defineClass(name: string, superClass?: any): any;
-    preventOverrideClass(classDefinition: any, except?: any[]): boolean;
+    defineClass(name: string, superclass?: any): any;
+    preventInheritingClass(classDefinition: any, except?: any[]): boolean;
     preventOverrideFunction(classDefinition: any, functions: string[]): boolean;
-    subclassOf(superClass: any): boolean;
+    subclassOf(superclass: any): boolean;
 }
 declare function valueOf(v: any): FunctionType | undefined;
 export declare const type: {
@@ -11,7 +11,7 @@ export declare const type: {
     isClass: typeof isClass;
     defineClass: typeof defineClass;
     isES6Class: typeof isES6Class;
-    preventOverrideClass: typeof preventOverrideClass;
+    preventInheritingClass: typeof preventInheritingClass;
     preventOverrideFunction: typeof preventOverrideFunction;
     valueOf: typeof valueOf;
 };

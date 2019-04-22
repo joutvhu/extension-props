@@ -1,23 +1,23 @@
 import {
     classForInstance,
     defineClass,
-    dynamicPreventOverrideClass,
+    dynamicPreventInheritingClass,
     dynamicPreventOverrideFunction,
     isClass,
     isES6Class,
-    preventOverrideClass,
+    preventInheritingClass,
     preventOverrideFunction,
     subclassOf
 } from '../utils/ClassAndFunction';
 
 interface FunctionType {
-    defineClass(name: string, superClass?: any);
+    defineClass(name: string, superclass?: any);
 
-    preventOverrideClass(classDefinition: any, except?: any[]): boolean;
+    preventInheritingClass(classDefinition: any, except?: any[]): boolean;
 
     preventOverrideFunction(classDefinition: any, functions: string[]): boolean;
 
-    subclassOf(superClass: any): boolean;
+    subclassOf(superclass: any): boolean;
 }
 
 function valueOf(v: any): FunctionType | undefined {
@@ -26,7 +26,7 @@ function valueOf(v: any): FunctionType | undefined {
         defineClass(name: string, superClass) {
             return defineClass(name, superClass, v);
         },
-        preventOverrideClass: dynamicPreventOverrideClass.bind(v),
+        preventInheritingClass: dynamicPreventInheritingClass.bind(v),
         preventOverrideFunction: dynamicPreventOverrideFunction.bind(v),
         subclassOf: subclassOf.bind(v)
     };
@@ -37,7 +37,7 @@ export const type = {
     isClass,
     defineClass,
     isES6Class,
-    preventOverrideClass,
+    preventInheritingClass,
     preventOverrideFunction,
     valueOf
 };
@@ -48,9 +48,9 @@ export function extend() {
     Function.subclassOf = subclassOf;
     Function.isES6Class = isES6Class;
 
-    Object.preventOverrideClass = preventOverrideClass;
+    Object.preventInheritingClass = preventInheritingClass;
     Object.preventOverrideFunction = preventOverrideFunction;
 
-    Object.prototype.preventOverrideClass = dynamicPreventOverrideClass;
+    Object.prototype.preventInheritingClass = dynamicPreventInheritingClass;
     Object.prototype.preventOverrideFunction = dynamicPreventOverrideFunction;
 }

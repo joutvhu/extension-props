@@ -37,14 +37,14 @@ interface RegExpConstructor {
 
 interface Function {
     clone(): Function | undefined;
-    defineClass(name: string, superClass?: any);
+    defineClass(name: string, superclass?: any);
     defineFunction(name: string): Function | undefined;
-    subclassOf(superClass: any): boolean;
+    subclassOf(superclass: any): boolean;
 }
 
 interface FunctionConstructor {
     isClass(v: any): boolean;
-    defineClass(name: string, superClass?: any, prototype?: Function);
+    defineClass(name: string, superclass?: any, prototype?: Function);
     isES6Class(v: any): boolean;
     defineFunction(name: string, _prototype?: Function): Function | undefined;
     getAllPropertyNames(obj: any): string[];
@@ -57,7 +57,7 @@ interface FunctionConstructor {
 }
 
 interface Object {
-    preventOverrideClass(classDefinition: any, except?: any[]): boolean;
+    preventInheritingClass(classDefinition: any, except?: any[]): boolean;
     preventOverrideFunction(classDefinition: any, functions: string[]): boolean;
 }
 
@@ -67,6 +67,6 @@ interface ObjectConstructor {
     getAllPropertyNames(obj: any): string[];
     getAllPropertyDescriptor(obj: any, p: string): any;
     getAllPropertyDescriptors(obj: any): any;
-    preventOverrideClass(obj: any, classDefinition: any, except?: any[]): boolean;
+    preventInheritingClass(obj: any, classDefinition: any, except?: any[]): boolean;
     preventOverrideFunction(obj: any, classDefinition: any, functions: string[]): boolean;
 }
