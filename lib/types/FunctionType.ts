@@ -6,6 +6,7 @@ import {
     functionForInstance,
     isArrowFunction,
     isAsyncFunction,
+    isCallable,
     isNonArrowFunction,
     isNormalFunction,
     isSyncFunction
@@ -31,6 +32,7 @@ function valueOf(v: any): FunctionType | undefined {
 export const type = {
     forInstance: functionForInstance,
     defineFunction,
+    isCallable,
     isNormalFunction,
     isAsyncFunction,
     isSyncFunction,
@@ -41,6 +43,7 @@ export const type = {
 
 export function extend() {
     Function.defineFunction = defineFunction;
+    Function.isCallable = isCallable;
     Function.isNormalFunction = isNormalFunction;
     Function.isAsyncFunction = isAsyncFunction;
     Function.isSyncFunction = isSyncFunction;

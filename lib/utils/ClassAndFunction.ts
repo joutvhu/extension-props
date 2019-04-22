@@ -183,7 +183,7 @@ export function dynamicDefineClass(name: string, superClass?: Function) {
 }
 
 export function isNormalFunction(f: Function): boolean {
-    return f instanceof Function && f.prototype !== undefined;
+    return f instanceof Function && !isES6Class(f) && f.prototype !== undefined;
 }
 
 export function isAsyncFunction(f: Function): boolean {
@@ -197,7 +197,7 @@ export function isAsyncFunction(f: Function): boolean {
 }
 
 export function isSyncFunction(f: Function): boolean {
-    if (f instanceof Function) {
+    if (f instanceof Function && !isES6Class(f)) {
         try {
             return f[Symbol.toStringTag] !== 'AsyncFunction';
         } catch (e) {
@@ -217,11 +217,19 @@ export function isArrowFunction(f: Function): boolean {
 }
 
 export function isNonArrowFunction(f: Function): boolean {
-    if (f instanceof Function) {
+    if (f instanceof Function && !isES6Class(f)) {
         const fstr = f.toString();
         if (f.prototype !== undefined || /^\s*function/.test(fstr) || /^\s*async\s*function/.test(fstr))
             return true;
         return !/^[a-zA-Z0-9_]+\s*=>/.test(fstr) && !/^\s*async\s*[a-zA-Z0-9_]+\s*=>/.test(fstr) &&
             !/^\([^]*\)\s*=>/.test(fstr) && !/^\s*async\s*\([^]*\)\s*=>/.test(fstr);
     } else return false;
+}
+
+export function isCallable(f: Function): boolean {
+    if (f instanceof Function) {
+        if (!f.prototype) return true;
+        return !isES6Class(f);
+    }
+    return false;
 }
