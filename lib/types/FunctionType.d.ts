@@ -1,4 +1,4 @@
-import { defineFunction, functionForInstance, isArrowFunction, isAsyncFunction, isNonArrowFunction, isNormalFunction, isSyncFunction } from '../utils/ClassAndFunction';
+import { defineFunction, functionForInstance, isArrowFunction, isAsyncFunction, isCallable, isNonArrowFunction, isNormalFunction, isSyncFunction } from '../utils/ClassAndFunction';
 interface FunctionType {
     clone(): Function;
     defineClass(name: string, superClass?: any): any;
@@ -8,6 +8,7 @@ declare function valueOf(v: any): FunctionType | undefined;
 export declare const type: {
     forInstance: typeof functionForInstance;
     defineFunction: typeof defineFunction;
+    isCallable: typeof isCallable;
     isNormalFunction: typeof isNormalFunction;
     isAsyncFunction: typeof isAsyncFunction;
     isSyncFunction: typeof isSyncFunction;

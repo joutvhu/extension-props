@@ -52,12 +52,12 @@ test('lastIndexOf function', () => {
     expect(['a', 'b', 'c'].lastIndexOf('c')).toBe(2);
 });
 
-test('lastIndexOf function', () => {
+test('isEmpty function', () => {
     expect([].isEmpty()).toBeTruthy();
     expect(['a', 'b', 'c'].isEmpty()).toBeFalsy();
 });
 
-test('lastIndexOf function', () => {
+test('isNotEmpty function', () => {
     expect([].isNotEmpty()).toBeFalsy();
     expect(['a', 'b', 'c'].isNotEmpty()).toBeTruthy();
 });

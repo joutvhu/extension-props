@@ -22,3 +22,4 @@ export declare function isAsyncFunction(f: Function): boolean;
 export declare function isSyncFunction(f: Function): boolean;
 export declare function isArrowFunction(f: Function): boolean;
 export declare function isNonArrowFunction(f: Function): boolean;
+export declare function isCallable(f: Function): boolean;

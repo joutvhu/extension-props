@@ -48,6 +48,7 @@ interface FunctionConstructor {
     isES6Class(v: any): boolean;
     defineFunction(name: string, _prototype?: Function): Function | undefined;
     getAllPropertyNames(obj: any): string[];
+    isCallable(f: Function): boolean;
     isNormalFunction(f: Function): boolean;
     isAsyncFunction(f: Function): boolean;
     isSyncFunction(f: Function): boolean;

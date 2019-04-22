@@ -1,5 +1,6 @@
 const {ClassType, OverridingError} = require('#index');
-const ClassTest = require('./data/class');
+const classTest = require('./data/class');
+const funcTest = require('./data/function');
 
 test('forInstance function', () => {
     expect(ClassType.forInstance({})).toBeFalsy();
@@ -24,46 +25,54 @@ test('defineClass function', () => {
 });
 
 test('isES6Class function', () => {
-    expect(ClassType.isES6Class(ClassTest.A)).toBeTruthy();
-    expect(ClassType.isES6Class(ClassTest.B)).toBeTruthy();
-    expect(ClassType.isES6Class(ClassTest.C)).toBeTruthy();
-    expect(ClassType.isES6Class(ClassTest.D)).toBeTruthy();
-    expect(ClassType.isES6Class(ClassTest.E)).toBeTruthy();
+    expect(ClassType.isES6Class(classTest.A)).toBeTruthy();
+    expect(ClassType.isES6Class(classTest.B)).toBeTruthy();
+    expect(ClassType.isES6Class(classTest.C)).toBeTruthy();
+    expect(ClassType.isES6Class(classTest.D)).toBeTruthy();
+    expect(ClassType.isES6Class(classTest.E)).toBeTruthy();
+
+    expect(ClassType.isES6Class(funcTest.as0)).toBeFalsy();
+    expect(ClassType.isES6Class(funcTest.sy0)).toBeFalsy();
+    expect(ClassType.isES6Class(funcTest.ar0)).toBeFalsy();
+    expect(ClassType.isES6Class(funcTest.sr0)).toBeFalsy();
+    expect(ClassType.isES6Class(funcTest.ca0)).toBeFalsy();
+    expect(ClassType.isES6Class(funcTest.sc0)).toBeFalsy();
 });
 
 test('preventOverrideClass function', () => {
-    expect(ClassType.preventOverrideClass(new ClassTest.A(), ClassTest.A, [ClassTest.B, ClassTest.C])).toBeFalsy();
-    expect(ClassType.preventOverrideClass(new ClassTest.C(), ClassTest.B, [ClassTest.E, ClassTest.F])).toBeFalsy();
-    expect(ClassType.preventOverrideClass(new ClassTest.D(), ClassTest.B, [ClassTest.E, ClassTest.F])).toBeFalsy();
-    expect(ClassType.preventOverrideClass(new ClassTest.B(), ClassTest.A, [ClassTest.B, ClassTest.C])).toBeTruthy();
-    expect(ClassType.preventOverrideClass(new ClassTest.C(), ClassTest.A, [ClassTest.B, ClassTest.C])).toBeTruthy();
-    expect(ClassType.preventOverrideClass(new ClassTest.E(), ClassTest.A, [ClassTest.B, ClassTest.C])).toBeTruthy();
-    expect(ClassType.preventOverrideClass(new ClassTest.F(), ClassTest.A, [ClassTest.B, ClassTest.C])).toBeTruthy();
-    expect(() => ClassType.preventOverrideClass(new ClassTest.D(), ClassTest.A, [ClassTest.B, ClassTest.C])).toThrow(OverridingError);
+    expect(ClassType.preventOverrideClass(new classTest.A(), classTest.A, [classTest.B, classTest.C])).toBeFalsy();
+    expect(ClassType.preventOverrideClass(new classTest.C(), classTest.B, [classTest.E, classTest.F])).toBeFalsy();
+    expect(ClassType.preventOverrideClass(new classTest.D(), classTest.B, [classTest.E, classTest.F])).toBeFalsy();
+    expect(ClassType.preventOverrideClass(new classTest.B(), classTest.A, [classTest.B, classTest.C])).toBeTruthy();
+    expect(ClassType.preventOverrideClass(new classTest.C(), classTest.A, [classTest.B, classTest.C])).toBeTruthy();
+    expect(ClassType.preventOverrideClass(new classTest.E(), classTest.A, [classTest.B, classTest.C])).toBeTruthy();
+    expect(ClassType.preventOverrideClass(new classTest.F(), classTest.A, [classTest.B, classTest.C])).toBeTruthy();
+    expect(() => ClassType.preventOverrideClass(new classTest.D(), classTest.A, [classTest.B, classTest.C])).toThrow(OverridingError);
 });
 
 test('dynamicPreventOverrideFunction function', () => {
-    expect(ClassType.preventOverrideFunction(new ClassTest.A(), ClassTest.A, ['a', 'b', 'c'])).toBeFalsy();
-    expect(ClassType.preventOverrideFunction(new ClassTest.D(), ClassTest.B, ['a', 'b', 'c'])).toBeFalsy();
-    expect(ClassType.preventOverrideFunction(new ClassTest.B(), ClassTest.C, ['a', 'b', 'c'])).toBeFalsy();
-    expect(ClassType.preventOverrideFunction(new ClassTest.B(), ClassTest.A, ['b', 'c'])).toBeTruthy();
-    expect(ClassType.preventOverrideFunction(new ClassTest.C(), ClassTest.A, ['c'])).toBeTruthy();
-    expect(ClassType.preventOverrideFunction(new ClassTest.D(), ClassTest.A, ['b'])).toBeTruthy();
-    expect(ClassType.preventOverrideFunction(new ClassTest.F(), ClassTest.E, ['b'])).toBeTruthy();
-    expect(() => ClassType.preventOverrideFunction(new ClassTest.B(), ClassTest.A, ['a', 'b', 'c'])).toThrow(OverridingError);
-    expect(() => ClassType.preventOverrideFunction(new ClassTest.C(), ClassTest.A, ['a', 'b', 'c'])).toThrow(OverridingError);
-    expect(() => ClassType.preventOverrideFunction(new ClassTest.F(), ClassTest.A, ['a', 'b'])).toThrow(OverridingError);
+    expect(ClassType.preventOverrideFunction(new classTest.A(), classTest.A, ['a', 'b', 'c'])).toBeFalsy();
+    expect(ClassType.preventOverrideFunction(new classTest.D(), classTest.B, ['a', 'b', 'c'])).toBeFalsy();
+    expect(ClassType.preventOverrideFunction(new classTest.B(), classTest.C, ['a', 'b', 'c'])).toBeFalsy();
+    expect(ClassType.preventOverrideFunction(new classTest.B(), classTest.A, ['b', 'c'])).toBeTruthy();
+    expect(ClassType.preventOverrideFunction(new classTest.C(), classTest.A, ['c'])).toBeTruthy();
+    expect(ClassType.preventOverrideFunction(new classTest.D(), classTest.A, ['b'])).toBeTruthy();
+    expect(ClassType.preventOverrideFunction(new classTest.F(), classTest.E, ['b'])).toBeTruthy();
+    expect(ClassType.preventOverrideFunction(new classTest.E(), classTest.A, ['c'])).toBeTruthy();
+    expect(() => ClassType.preventOverrideFunction(new classTest.B(), classTest.A, ['a', 'b', 'c'])).toThrow(OverridingError);
+    expect(() => ClassType.preventOverrideFunction(new classTest.C(), classTest.A, ['a', 'b', 'c'])).toThrow(OverridingError);
+    expect(() => ClassType.preventOverrideFunction(new classTest.F(), classTest.A, ['a', 'b'])).toThrow(OverridingError);
 });
 
 test('subclassOf function', () => {
-    expect(ClassType.valueOf(ClassTest.A).subclassOf(ClassTest.A)).toBeFalsy();
-    expect(ClassType.valueOf(ClassTest.C).subclassOf(ClassTest.B)).toBeFalsy();
-    expect(ClassType.valueOf(ClassTest.D).subclassOf(ClassTest.B)).toBeFalsy();
-    expect(ClassType.valueOf(ClassTest.B).subclassOf(ClassTest.A)).toBeTruthy();
-    expect(ClassType.valueOf(ClassTest.C).subclassOf(ClassTest.A)).toBeTruthy();
-    expect(ClassType.valueOf(ClassTest.D).subclassOf(ClassTest.A)).toBeTruthy();
-    expect(ClassType.valueOf(ClassTest.E).subclassOf(ClassTest.A)).toBeTruthy();
-    expect(ClassType.valueOf(ClassTest.F).subclassOf(ClassTest.A)).toBeTruthy();
+    expect(ClassType.valueOf(classTest.A).subclassOf(classTest.A)).toBeFalsy();
+    expect(ClassType.valueOf(classTest.C).subclassOf(classTest.B)).toBeFalsy();
+    expect(ClassType.valueOf(classTest.D).subclassOf(classTest.B)).toBeFalsy();
+    expect(ClassType.valueOf(classTest.B).subclassOf(classTest.A)).toBeTruthy();
+    expect(ClassType.valueOf(classTest.C).subclassOf(classTest.A)).toBeTruthy();
+    expect(ClassType.valueOf(classTest.D).subclassOf(classTest.A)).toBeTruthy();
+    expect(ClassType.valueOf(classTest.E).subclassOf(classTest.A)).toBeTruthy();
+    expect(ClassType.valueOf(classTest.F).subclassOf(classTest.A)).toBeTruthy();
 });
 
 test('valueOf.defineClass function', () => {

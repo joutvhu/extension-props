@@ -60,12 +60,12 @@ test('lastIndexOf function', () => {
     expect(ArrayType.valueOf(['a', 'b', 'c']).lastIndexOf('c')).toBe(2);
 });
 
-test('lastIndexOf function', () => {
+test('isEmpty function', () => {
     expect(ArrayType.valueOf([]).isEmpty()).toBeTruthy();
     expect(ArrayType.valueOf(['a', 'b', 'c']).isEmpty()).toBeFalsy();
 });
 
-test('lastIndexOf function', () => {
+test('isNotEmpty function', () => {
     expect(ArrayType.valueOf([]).isNotEmpty()).toBeFalsy();
     expect(ArrayType.valueOf(['a', 'b', 'c']).isNotEmpty()).toBeTruthy();
 });
