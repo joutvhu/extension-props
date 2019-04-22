@@ -97,7 +97,7 @@ export function preventInheritingClass(obj: any, classDefinition: any, except?: 
             }
         }
         if (error) {
-            throw new OverridingError('You can\'t override the [ClassName] class.'
+            throw new OverridingError('You can\'t inheriting the [ClassName] class.'
                 .replace('[ClassName]', classDefinition['name']));
         }
         return true;
