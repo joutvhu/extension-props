@@ -69,6 +69,10 @@ export function defineClass(name: string, superClass?: Function, prototype?: Fun
     return temp;
 }
 
+export function dynamicDefineClass(name: string, prototype?: Function) {
+    return defineClass(name, this, prototype);
+}
+
 export const OverridingError = defineClass('OverridingError', Error, function () {
     this.name = 'Overriding Error';
 });
@@ -176,10 +180,6 @@ export function defineFunction(name: string, _prototype?: Function): Function | 
 export function dynamicDefineFunction(name: string): Function | undefined {
     if (!(this instanceof Function)) return undefined;
     return defineFunction(name, this);
-}
-
-export function dynamicDefineClass(name: string, superClass?: Function) {
-    return defineClass(name, superClass, this);
 }
 
 export function isNormalFunction(f: Function): boolean {

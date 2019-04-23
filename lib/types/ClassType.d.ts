@@ -1,6 +1,6 @@
 import { classForInstance, defineClass, isClass, isES6Class, preventInheritingClass, preventOverrideFunction } from '../utils/ClassAndFunction';
 interface FunctionType {
-    defineClass(name: string, superclass?: any): any;
+    defineClass(name: string, prototype?: Function): any;
     preventInheritingClass(classDefinition: any, except?: any[]): boolean;
     preventOverrideFunction(classDefinition: any, functions: string[]): boolean;
     subclassOf(superclass: any): boolean;

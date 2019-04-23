@@ -17,7 +17,7 @@ interface Array<T> {
     includes(searchElement: T, fromIndex?: number): boolean;
     equals(v: T[]): boolean;
     virtualGet(i: number): T;
-    insert(index: number, ...element: T[]): T[];
+    insert(i: number, ...elements: T[]): T[];
     lastIndexOf(o: T): number;
     isEmpty(): boolean;
     isNotEmpty(): boolean;
@@ -37,7 +37,7 @@ interface RegExpConstructor {
 
 interface Function {
     clone(): Function | undefined;
-    defineClass(name: string, superclass?: any);
+    defineClass(name: string, prototype?: Function);
     defineFunction(name: string): Function | undefined;
     subclassOf(superclass: any): boolean;
 }

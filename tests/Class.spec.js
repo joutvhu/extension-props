@@ -24,6 +24,12 @@ test('defineClass function', () => {
     expect(ClassType.defineClass('D')).toBeInstanceOf(Function);
 });
 
+test('valueOf.defineClass function', () => {
+    expect(ClassType.valueOf(classTest.E).defineClass('A')).toHaveProperty('name', 'A');
+    expect(ClassType.valueOf(classTest.A).defineClass('B', function a() { })).toHaveProperty('name', 'B');
+    expect(ClassType.valueOf(classTest.D).defineClass('C', function b() { })).toBeInstanceOf(Function);
+});
+
 test('isES6Class function', () => {
     expect(ClassType.isES6Class(classTest.A)).toBeTruthy();
     expect(ClassType.isES6Class(classTest.B)).toBeTruthy();

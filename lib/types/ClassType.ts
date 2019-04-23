@@ -1,6 +1,7 @@
 import {
     classForInstance,
     defineClass,
+    dynamicDefineClass,
     dynamicPreventInheritingClass,
     dynamicPreventOverrideFunction,
     isClass,
@@ -11,7 +12,7 @@ import {
 } from '../utils/ClassAndFunction';
 
 interface FunctionType {
-    defineClass(name: string, superclass?: any);
+    defineClass(name: string, prototype?: Function);
 
     preventInheritingClass(classDefinition: any, except?: any[]): boolean;
 
@@ -23,8 +24,8 @@ interface FunctionType {
 function valueOf(v: any): FunctionType | undefined {
     if (!classForInstance(v)) return undefined;
     return {
-        defineClass(name: string, superClass) {
-            return defineClass(name, superClass, v);
+        defineClass(name: string, prototype?: Function) {
+            return defineClass(name, v, prototype);
         },
         preventInheritingClass: dynamicPreventInheritingClass.bind(v),
         preventOverrideFunction: dynamicPreventOverrideFunction.bind(v),
@@ -50,6 +51,8 @@ export function extend() {
 
     Object.preventInheritingClass = preventInheritingClass;
     Object.preventOverrideFunction = preventOverrideFunction;
+
+    Function.prototype.defineClass = dynamicDefineClass;
 
     Object.prototype.preventInheritingClass = dynamicPreventInheritingClass;
     Object.prototype.preventOverrideFunction = dynamicPreventOverrideFunction;

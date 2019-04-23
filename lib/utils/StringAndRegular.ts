@@ -61,6 +61,7 @@ export function isNotBlank(v: any): boolean {
 }
 
 /**
+ * Escape regular expression special characters.
  *
  * @param str
  * @returns {string|void | string | never} a string of Regular
