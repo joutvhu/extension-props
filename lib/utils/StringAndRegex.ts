@@ -60,7 +60,35 @@ export function isNotBlank(v: any): boolean {
     return typeof v === 'string' && v.length > 0;
 }
 
+export function replaceAll(str, search, replacement): string | undefined {
+    if (!stringForInstance(str)) return undefined;
+    if (!stringForInstance(search) || !stringForInstance(replacement)) return str;
+    return str.split(search).join(replacement);
+}
+
+export function dynamicReplaceAll(search, replacement): string {
+    return replaceAll(this, search, replacement) || empty;
+}
+
+export function replacePlaceholders(str: string, map: any): string | undefined {
+    if (!stringForInstance(str)) return undefined;
+    if (map.constructor === {}.constructor) {
+        let i;
+        let result = str;
+        for (i in map) {
+            if (stringForInstance(i) && stringForInstance(map[i]))
+                result = result.split(i).join(map[i]);
+        }
+        return result;
+    } else return str;
+}
+
+export function dynamicReplacePlaceholders(map: any): string {
+    return replacePlaceholders(this, map) || empty;
+}
+
 /**
+ * Escape regular expression special characters.
  *
  * @param str
  * @returns {string|void | string | never} a string of Regular
@@ -73,7 +101,7 @@ export function escape(str: string): string {
 /**
  *
  * @param str
- * @returns {string} a string of Regular
+ * @returns {string} a string of Regex
  */
 export function matchWords(str: string): string {
     if (typeof str !== 'string' || str.length === 0) return '';

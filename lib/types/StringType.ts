@@ -1,4 +1,6 @@
 import {
+    dynamicReplaceAll,
+    dynamicReplacePlaceholders,
     empty,
     equals,
     equalsIgnoreCase,
@@ -6,9 +8,11 @@ import {
     isEmpty,
     isNotBlank,
     isNotEmpty,
+    replaceAll,
+    replacePlaceholders,
     space,
     stringForInstance
-} from '../utils/StringAndRegular';
+} from '../utils/StringAndRegex';
 
 interface StringType {
     equals(v: any): boolean;
@@ -18,6 +22,10 @@ interface StringType {
     isEmpty(): boolean;
 
     isNotEmpty(): boolean;
+
+    replaceAll(search, replacement): string;
+
+    replacePlaceholders(map: any): string;
 }
 
 function valueOf(v: string): StringType | undefined {
@@ -26,7 +34,9 @@ function valueOf(v: string): StringType | undefined {
         equals: equals.bind(v),
         equalsIgnoreCase: equalsIgnoreCase.bind(v),
         isEmpty: isEmpty.bind(v),
-        isNotEmpty: isNotEmpty.bind(v)
+        isNotEmpty: isNotEmpty.bind(v),
+        replaceAll: dynamicReplaceAll.bind(v),
+        replacePlaceholders: dynamicReplacePlaceholders.bind(v)
     };
 }
 
@@ -36,7 +46,9 @@ export const type = {
     forInstance: stringForInstance,
     isBlank,
     isNotBlank,
-    valueOf
+    valueOf,
+    replaceAll,
+    replacePlaceholders
 };
 
 export function extend() {
@@ -45,9 +57,13 @@ export function extend() {
     String.isBlank = isBlank;
     String.isNotBlank = isNotBlank;
     String.forInstance = stringForInstance;
+    String.replaceAll = replaceAll;
+    String.replacePlaceholders = replacePlaceholders;
 
     String.prototype.equals = equals;
     String.prototype.equalsIgnoreCase = equalsIgnoreCase;
     String.prototype.isEmpty = isEmpty;
     String.prototype.isNotEmpty = isNotEmpty;
+    String.prototype.replaceAll = dynamicReplaceAll;
+    String.prototype.replacePlaceholders = dynamicReplacePlaceholders;
 }

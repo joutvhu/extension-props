@@ -39,16 +39,6 @@ test('valueOf.defineFunction function', () => {
     }).defineFunction('C')).toBeInstanceOf(Function);
 });
 
-test('valueOf.defineClass function', () => {
-    expect(FunctionType.valueOf(function () {
-    }).defineClass('A')).toHaveProperty('name', 'A');
-    expect(FunctionType.valueOf(function a() {
-    }).defineClass('B', class A {
-    })).toHaveProperty('name', 'B');
-    expect(FunctionType.valueOf(function b() {
-    }).defineClass('C')).toBeInstanceOf(Function);
-});
-
 test('isNormalFunction function', () => {
     expect(FunctionType.isNormalFunction(funcTest.as0)).toBeFalsy();
     expect(FunctionType.isNormalFunction(funcTest.as1)).toBeFalsy();

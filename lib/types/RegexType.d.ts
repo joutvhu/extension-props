@@ -1,4 +1,4 @@
-import { escape, matchWords, regularForInstance } from '../utils/StringAndRegular';
+import { escape, matchWords, regularForInstance } from '../utils/StringAndRegex';
 declare function valueOf(v: RegExp): {} | null;
 export declare const type: {
     forInstance: typeof regularForInstance;

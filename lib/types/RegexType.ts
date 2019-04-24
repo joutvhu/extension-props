@@ -1,4 +1,4 @@
-import {escape, matchWords, regularForInstance} from '../utils/StringAndRegular';
+import {escape, matchWords, regularForInstance} from '../utils/StringAndRegex';
 
 function valueOf(v: RegExp) {
     if (!regularForInstance(v)) return null;
@@ -13,6 +13,7 @@ export const type = {
 };
 
 export function extend() {
+    RegExp.forInstance = regularForInstance;
     RegExp.escape = escape;
     RegExp.matchWords = matchWords;
     RegExp.forInstance = regularForInstance;

@@ -25,9 +25,9 @@ export function virtualGet(i: number): any {
     else return this[((i % this.length) + this.length) % this.length];
 }
 
-export function insert(i: number, ...element: any[]): any[] {
+export function insert(i: number, ...elements: any[]): any[] {
     if (this instanceof Array)
-        this.splice(i, 0, ...element);
+        this.splice(i, 0, ...elements);
     return this;
 }
 

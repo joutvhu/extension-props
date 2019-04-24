@@ -24,6 +24,12 @@ test('defineClass function', () => {
     expect(ClassType.defineClass('D')).toBeInstanceOf(Function);
 });
 
+test('valueOf.defineClass function', () => {
+    expect(ClassType.valueOf(classTest.E).defineClass('A')).toHaveProperty('name', 'A');
+    expect(ClassType.valueOf(classTest.A).defineClass('B', function a() { })).toHaveProperty('name', 'B');
+    expect(ClassType.valueOf(classTest.D).defineClass('C', function b() { })).toBeInstanceOf(Function);
+});
+
 test('isES6Class function', () => {
     expect(ClassType.isES6Class(classTest.A)).toBeTruthy();
     expect(ClassType.isES6Class(classTest.B)).toBeTruthy();
@@ -39,15 +45,15 @@ test('isES6Class function', () => {
     expect(ClassType.isES6Class(funcTest.sc0)).toBeFalsy();
 });
 
-test('preventOverrideClass function', () => {
-    expect(ClassType.preventOverrideClass(new classTest.A(), classTest.A, [classTest.B, classTest.C])).toBeFalsy();
-    expect(ClassType.preventOverrideClass(new classTest.C(), classTest.B, [classTest.E, classTest.F])).toBeFalsy();
-    expect(ClassType.preventOverrideClass(new classTest.D(), classTest.B, [classTest.E, classTest.F])).toBeFalsy();
-    expect(ClassType.preventOverrideClass(new classTest.B(), classTest.A, [classTest.B, classTest.C])).toBeTruthy();
-    expect(ClassType.preventOverrideClass(new classTest.C(), classTest.A, [classTest.B, classTest.C])).toBeTruthy();
-    expect(ClassType.preventOverrideClass(new classTest.E(), classTest.A, [classTest.B, classTest.C])).toBeTruthy();
-    expect(ClassType.preventOverrideClass(new classTest.F(), classTest.A, [classTest.B, classTest.C])).toBeTruthy();
-    expect(() => ClassType.preventOverrideClass(new classTest.D(), classTest.A, [classTest.B, classTest.C])).toThrow(OverridingError);
+test('preventInheritingClass function', () => {
+    expect(ClassType.preventInheritingClass(new classTest.A(), classTest.A, [classTest.B, classTest.C])).toBeFalsy();
+    expect(ClassType.preventInheritingClass(new classTest.C(), classTest.B, [classTest.E, classTest.F])).toBeFalsy();
+    expect(ClassType.preventInheritingClass(new classTest.D(), classTest.B, [classTest.E, classTest.F])).toBeFalsy();
+    expect(ClassType.preventInheritingClass(new classTest.B(), classTest.A, [classTest.B, classTest.C])).toBeTruthy();
+    expect(ClassType.preventInheritingClass(new classTest.C(), classTest.A, [classTest.B, classTest.C])).toBeTruthy();
+    expect(ClassType.preventInheritingClass(new classTest.E(), classTest.A, [classTest.B, classTest.C])).toBeTruthy();
+    expect(ClassType.preventInheritingClass(new classTest.F(), classTest.A, [classTest.B, classTest.C])).toBeTruthy();
+    expect(() => ClassType.preventInheritingClass(new classTest.D(), classTest.A, [classTest.B, classTest.C])).toThrow(OverridingError);
 });
 
 test('dynamicPreventOverrideFunction function', () => {

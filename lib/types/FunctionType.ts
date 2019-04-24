@@ -1,7 +1,6 @@
 import {
     clone,
     defineFunction,
-    dynamicDefineClass,
     dynamicDefineFunction,
     functionForInstance,
     isArrowFunction,
@@ -15,8 +14,6 @@ import {
 interface FunctionType {
     clone(): Function;
 
-    defineClass(name: string, superClass?: any);
-
     defineFunction(name: string): Function | undefined;
 }
 
@@ -24,8 +21,7 @@ function valueOf(v: any): FunctionType | undefined {
     if (!functionForInstance(v) || v.prototype === undefined) return undefined;
     return {
         clone: clone.bind(v),
-        defineFunction: defineFunction.bind(v),
-        defineClass: dynamicDefineClass.bind(v)
+        defineFunction: dynamicDefineFunction.bind(v)
     };
 }
 
@@ -49,8 +45,8 @@ export function extend() {
     Function.isSyncFunction = isSyncFunction;
     Function.isArrowFunction = isArrowFunction;
     Function.isNonArrowFunction = isNonArrowFunction;
+    Function.functionForInstance = functionForInstance;
 
     Function.prototype.clone = clone;
     Function.prototype.defineFunction = dynamicDefineFunction;
-    Function.prototype.defineClass = dynamicDefineClass;
 }
