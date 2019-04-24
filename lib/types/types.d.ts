@@ -3,6 +3,8 @@ interface String {
     equalsIgnoreCase(v: any): boolean;
     isEmpty(): boolean;
     isNotEmpty(): boolean;
+    replaceAll(search, replacement): string;
+    replacePlaceholders(map: any): string;
 }
 
 interface StringConstructor {
@@ -11,6 +13,8 @@ interface StringConstructor {
     isBlank(v: any): boolean;
     isNotBlank(v: any): boolean;
     forInstance(v: any): boolean;
+    replaceAll(str, search, replacement): string | undefined;
+    replacePlaceholders(str: string, map: any): string | undefined;
 }
 
 interface Array<T> {

@@ -34,6 +34,10 @@ export declare function isBlank(v: any): boolean;
  * @returns {boolean}
  */
 export declare function isNotBlank(v: any): boolean;
+export declare function replaceAll(str: any, search: any, replacement: any): string | undefined;
+export declare function dynamicReplaceAll(search: any, replacement: any): string;
+export declare function replacePlaceholders(str: string, map: any): string | undefined;
+export declare function dynamicReplacePlaceholders(map: any): string;
 /**
  * Escape regular expression special characters.
  *

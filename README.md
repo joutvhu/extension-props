@@ -41,6 +41,8 @@ yarn add extension-props
 - `isNotEmpty()`: checks a string is not empty.
 - `equals(v)`: checks a string is equals with another string.
 - `equalsIgnoreCase(v)`: checks a string is equals with another string on the basis of content of the string irrespective of case of the string.
+- `replaceAll(str, search, replacement)`: returns a new string with all matches of a pattern replaced by a replacement.
+- `replacePlaceholders(str, map)`: returns a new string with all matches of each key in the map replaced by its value.
 
 ### Function
 
