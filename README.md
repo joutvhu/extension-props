@@ -168,10 +168,10 @@ yarn add extension-props
 
 ### Object
 
-- `getAllPropertyDescriptor(obj)`: returns an array of all properties of a given object.
+- `getAllPropertyNames(obj)`: returns an array of all properties of a given object.
     - _Variations:_
-       - `ObjectType.getAllPropertyDescriptor(obj)`
-       - `Object.getAllPropertyDescriptor(obj)`
+       - `ObjectType.getAllPropertyNames(obj)`
+       - `Object.getAllPropertyNames(obj)`
 - `getAllPropertyDescriptor(obj, prop)`: returns a property descriptor for a property of a given object.
     - _Variations:_
        - `ObjectType.getAllPropertyDescriptor(obj, prop)`
