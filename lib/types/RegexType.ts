@@ -13,6 +13,7 @@ export const type = {
 };
 
 export function extend() {
+    RegExp.forInstance = regularForInstance;
     RegExp.escape = escape;
     RegExp.matchWords = matchWords;
     RegExp.forInstance = regularForInstance;

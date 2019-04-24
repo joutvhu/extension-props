@@ -34,6 +34,7 @@ interface ArrayConstructor {
 }
 
 interface RegExpConstructor {
+    forInstance(v: any): boolean;
     escape(str: string): string;
     matchWords(str: string): string;
     forInstance(v: any): boolean;
@@ -48,6 +49,8 @@ interface Function {
 
 interface FunctionConstructor {
     isClass(v: any): boolean;
+    classForInstance(v: any): boolean;
+    functionForInstance(v: any): boolean;
     defineClass(name: string, superclass?: any, prototype?: Function);
     isES6Class(v: any): boolean;
     defineFunction(name: string, _prototype?: Function): Function | undefined;

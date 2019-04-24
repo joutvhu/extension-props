@@ -22,7 +22,7 @@ interface FunctionType {
 }
 
 function valueOf(v: any): FunctionType | undefined {
-    if (!classForInstance(v)) return undefined;
+    if (!classForInstance(v) && !(v instanceof Object)) return undefined;
     return {
         defineClass(name: string, prototype?: Function) {
             return defineClass(name, v, prototype);
@@ -48,6 +48,7 @@ export function extend() {
     Function.isClass = isClass;
     Function.subclassOf = subclassOf;
     Function.isES6Class = isES6Class;
+    Function.classForInstance = classForInstance;
 
     Object.preventInheritingClass = preventInheritingClass;
     Object.preventOverrideFunction = preventOverrideFunction;

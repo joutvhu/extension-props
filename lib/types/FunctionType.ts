@@ -21,7 +21,7 @@ function valueOf(v: any): FunctionType | undefined {
     if (!functionForInstance(v) || v.prototype === undefined) return undefined;
     return {
         clone: clone.bind(v),
-        defineFunction: defineFunction.bind(v)
+        defineFunction: dynamicDefineFunction.bind(v)
     };
 }
 
@@ -45,6 +45,7 @@ export function extend() {
     Function.isSyncFunction = isSyncFunction;
     Function.isArrowFunction = isArrowFunction;
     Function.isNonArrowFunction = isNonArrowFunction;
+    Function.functionForInstance = functionForInstance;
 
     Function.prototype.clone = clone;
     Function.prototype.defineFunction = dynamicDefineFunction;
