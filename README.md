@@ -151,7 +151,7 @@ yarn add extension-props
     - throw a OverridingError exception, if obj is an instance of a class, and it is not allowed to inherit the classDefinition class.
     - return false, if obj is an instance of a class, and it is not subclass of classDefinition class.
     - return true, if obj is an instance of a class, and it is allowed to inherit the classDefinition class.
-    - **Recommended**: Put this function into the constructor.
+    - _Recommended:_ Put this function into the constructor.
 - `preventOverrideFunction(obj, classDefinition, functions)`: prevent overriding of functions.
     - _Variations:_
        - `ClassType.preventOverrideFunction(obj, classDefinition, functions)`
@@ -164,7 +164,7 @@ yarn add extension-props
     - throw a OverridingError exception, if obj contains a function, and it is not allowed to override in the subclass of the classDefinition class.
     - return false, if obj is an instance of a class, and it is not subclass of classDefinition class.
     - return true, if no function is prevented, it is contained in subclasses.
-    - **Recommended**: Put this function into the constructor.
+    - _Recommended:_ Put this function into the constructor.
 
 ### Object
 
