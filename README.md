@@ -20,14 +20,14 @@ yarn add extension-props
   require('extension-props').extend();
   ```
 
-- Use utility functions through the provided objects likes ObjectType, ArrayType, ClassType, FunctionType, RegularType, StringType.
+- Use utility functions through the provided objects likes ObjectType, ArrayType, ClassType, FunctionType, RegexType, StringType. _(Recommend)_
   ```js
   const {
       ObjectType,
       ArrayType,
       ClassType,
       FunctionType,
-      RegularType,
+      RegexType,
       StringType
   } = require('extension-props');
   ```
@@ -91,11 +91,11 @@ yarn add extension-props
 - `isBlank(obj)`: return true, if obj = undefined or obj = null.
 - `isNotBlank(obj)`: return true, if obj != undefined and obj != null.
 
-### Regular
+### Regex
 
-- `forInstance(v)`: checks whether v is a regular.
-- `escape(str)`: escape regular expression special characters.
-- `matchWords(str)`: create a regular string for checks match with the words in str string.
+- `forInstance(v)`: checks whether v is a regex.
+- `escape(str)`: escape regex expression special characters.
+- `matchWords(str)`: create a regex string for checks match with the words in str string.
 
 ### Array
 

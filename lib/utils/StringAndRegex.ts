@@ -74,7 +74,7 @@ export function escape(str: string): string {
 /**
  *
  * @param str
- * @returns {string} a string of Regular
+ * @returns {string} a string of Regex
  */
 export function matchWords(str: string): string {
     if (typeof str !== 'string' || str.length === 0) return '';

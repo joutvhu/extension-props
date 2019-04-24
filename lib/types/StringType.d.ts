@@ -1,4 +1,4 @@
-import { isBlank, isNotBlank, stringForInstance } from '../utils/StringAndRegular';
+import { isBlank, isNotBlank, stringForInstance } from '../utils/StringAndRegex';
 interface StringType {
     equals(v: any): boolean;
     equalsIgnoreCase(v: any): boolean;

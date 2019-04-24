@@ -8,7 +8,7 @@ import {
     isNotEmpty,
     space,
     stringForInstance
-} from '../utils/StringAndRegular';
+} from '../utils/StringAndRegex';
 
 interface StringType {
     equals(v: any): boolean;

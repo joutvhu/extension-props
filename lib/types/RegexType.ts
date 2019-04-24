@@ -1,4 +1,4 @@
-import {escape, matchWords, regularForInstance} from '../utils/StringAndRegular';
+import {escape, matchWords, regularForInstance} from '../utils/StringAndRegex';
 
 function valueOf(v: RegExp) {
     if (!regularForInstance(v)) return null;
